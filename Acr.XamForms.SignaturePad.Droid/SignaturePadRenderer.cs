@@ -55,7 +55,9 @@ namespace Acr.XamForms.SignaturePad.Droid {
 
             if (el.StrokeWidth > 0)
                 view.StrokeWidth = el.StrokeWidth;
-            
+
+            view.IsBlankChangedCallback = () => this.Element.OnIsBlankChanged();
+
             this.Element.SetInternals(
                 this.GetImageStream,
                 () => view.Points.Select(x => new DrawPoint(x.X, x.Y)), 

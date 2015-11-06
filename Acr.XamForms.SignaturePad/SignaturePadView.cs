@@ -12,6 +12,9 @@ namespace Acr.XamForms.SignaturePad {
         private Action<IEnumerable<DrawPoint>> loadDrawPoints;
         private Func<bool> isBlankFunc;
 
+        public SignaturePadView()
+        {
+        }
 
         public Stream GetImage(ImageFormatType imageFormat) {
             return this.getImageFunc(imageFormat);
@@ -39,6 +42,11 @@ namespace Acr.XamForms.SignaturePad {
             this.loadDrawPoints = loadPoints;
             this.isBlankFunc = isBlank;
         }
+
+        public event EventHandler IsBlankChanged;
+
+        public void OnIsBlankChanged() =>
+            this.IsBlankChanged?.Invoke(this, EventArgs.Empty);
 
         #region Properties
 
